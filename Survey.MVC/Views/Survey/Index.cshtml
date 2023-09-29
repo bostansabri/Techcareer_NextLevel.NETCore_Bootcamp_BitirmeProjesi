@@ -1,0 +1,26 @@
+﻿@using Survey.Entity.Concrete;
+@model IEnumerable<Question>
+
+<a class="btn btn-success" asp-action="Create">Yeni Kayit</a>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(p=>p.Number)</th>
+            <th>@Html.DisplayNameFor(p=>p.Content)</th>
+           
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Number</td>
+                <td>@item.Content</td>
+                
+
+               
+            </tr>
+        }
+    </tbody>
+</table>
