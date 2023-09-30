@@ -1,13 +1,13 @@
-﻿using TechSurvey.Entity.Concrete;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TechSurvey.Entity.Concrete;
 
 namespace TechSurvey.Business.Abstract
 {
-    public interface IQuestionManager : IBaseManager<Question>
+    public interface ISurveyManager : IBaseManager<Survey>
     {
     }
 }

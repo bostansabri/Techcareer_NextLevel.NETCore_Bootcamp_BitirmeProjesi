@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
-using Survey.DAL.Contexts;
-using Survey.MVC.AutoMapperProfile;
-using Survey.MVC.Extensions;
+using TechSurvey.DAL.Contexts;
+using TechSurvey.MVC.AutoMapperProfile;
+using TechSurvey.MVC.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 

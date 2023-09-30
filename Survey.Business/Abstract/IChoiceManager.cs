@@ -1,11 +1,11 @@
-﻿using Survey.Entity.Concrete;
+﻿using TechSurvey.Entity.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Survey.Business.Abstract
+namespace TechSurvey.Business.Abstract
 {
     public interface IChoiceManager : IBaseManager<Choice>
     {

@@ -1,23 +1,24 @@
-﻿using Survey.Entity.Abstract;
-using Survey.Business.Abstract;
-using Survey.DAL.Repository.Abstract;
+﻿using TechSurvey.Entity.Abstract;
+using TechSurvey.Business.Abstract;
+using TechSurvey.DAL.Repository.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
+using TechSurvey.DAL.Repository.Concrete;
 
-namespace Survey.Business.Concrete
+namespace TechSurvey.Business.Concrete
 {
     public class BaseManager<T> : IBaseManager<T> where T : BaseEntity
     {
         private readonly IBaseRepository<T> repository;
 
-        public BaseManager(IBaseRepository<T> repository)
+        public BaseManager()
         {
 
-            this.repository = repository;
+            this.repository = new BaseRepository<T>();
         }
 
         #region Insert

@@ -1,0 +1,58 @@
+﻿@using TechSurvey.MVC.Models.DTOs;
+@model CreateSurveyDTO
+
+<div class="card">
+	<div class="card-header">
+		<h4>New Survey</h4>
+	</div>
+	<div class="card-body">
+		<form asp-action="Create" asp-controller="Survey" method="post">
+			<div class="mb-3">
+				<label asp-for="@Model.Email" class="form-label">Enter Email</label>
+				<input asp-for="@Model.Email" class="form-control">
+				<span asp-validation-for="@Model.Email" class="text-danger"></span>
+			</div>
+			<div class="mb-3">
+				<label asp-for="@Model.SurveyName" class="form-label">Enter Survey Name</label>
+				<input asp-for="@Model.SurveyName" class="form-control">
+				<span asp-validation-for="@Model.SurveyName" class="text-danger"></span>
+			</div>
+			@foreach (var question in Model.Questions)
+			{
+				<div class="card">
+					<div class="card-header">
+						<h4>@question.Content</h4>
+					</div>
+					<div class="card-body">
+						<ul class="list-group" >
+							<input type="checkbox" />@question.Content
+						   @foreach (var choice in question.Choices)
+							{
+								<li class="list-group-item">@choice.Choice1</li>
+								<li class="list-group-item">@choice.Choice2</li>
+								<li class="list-group-item">@choice.Choice3</li>
+								<li class="list-group-item">@choice.Choice4</li>
+							}
+							
+							
+							@*@for (int i = 0; i < soru.Choices.Count; i++)
+							{
+								<li class="list-group-item">@soru.Choices[i].Choice1</li>
+								<li class="list-group-item">@choice.Choice2</li>
+								<li class="list-group-item">@choice.Choice3</li>
+								<li class="list-group-item">@choice.Choice4</li>
+							}		*@					
+								
+							
+						</ul>
+					</div>
+
+				</div>	
+			}
+
+			<div class="mb-3">
+				<button type="submit" class="btn btn-success">Kaydet</button>
+				</div>
+		</form>
+	</div>
+</div>

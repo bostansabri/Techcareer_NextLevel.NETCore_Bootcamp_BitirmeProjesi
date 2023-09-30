@@ -7,8 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Anket.DAL\Survey.DAL.csproj" />
-    <ProjectReference Include="..\Anket.Entity\Survey.Entity.csproj" />
+    <ProjectReference Include="..\Anket.DAL\TechSurvey.DAL.csproj" />
+    <ProjectReference Include="..\Anket.Entity\TechSurvey.Entity.csproj" />
   </ItemGroup>
 
 </Project>

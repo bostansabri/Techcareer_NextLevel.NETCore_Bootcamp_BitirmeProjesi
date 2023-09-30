@@ -1,4 +1,4 @@
-﻿namespace Survey.MVC.Models.DTOs
+﻿namespace TechSurvey.MVC.Models.DTOs
 {
     public class RoleDTO
     {

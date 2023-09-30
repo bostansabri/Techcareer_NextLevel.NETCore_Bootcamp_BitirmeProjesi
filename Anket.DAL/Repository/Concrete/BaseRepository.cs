@@ -1,7 +1,7 @@
-﻿using Survey.DAL.Contexts;
-using Survey.Entity.Abstract;
+﻿using TechSurvey.DAL.Contexts;
+using TechSurvey.Entity.Abstract;
 using Microsoft.EntityFrameworkCore;
-using Survey.DAL.Repository.Abstract;
+using TechSurvey.DAL.Repository.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Survey.DAL.Repository.Concrete
+namespace TechSurvey.DAL.Repository.Concrete
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : BaseEntity
     {

@@ -1,5 +1,5 @@
-﻿using Survey.DAL.Contexts;
-using Survey.Entity.Abstract;
+﻿using TechSurvey.DAL.Contexts;
+using TechSurvey.Entity.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Survey.DAL.Repository.Abstract
+namespace TechSurvey.DAL.Repository.Abstract
 {
     public interface IBaseRepository<T> where T : BaseEntity
     {

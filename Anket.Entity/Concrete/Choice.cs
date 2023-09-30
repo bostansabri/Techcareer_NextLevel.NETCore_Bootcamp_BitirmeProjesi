@@ -1,11 +1,11 @@
-﻿using Survey.Entity.Abstract;
+﻿using TechSurvey.Entity.Abstract;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Survey.Entity.Concrete
+namespace TechSurvey.Entity.Concrete
 {
     public class Choice : BaseEntity
     {
@@ -14,6 +14,7 @@ namespace Survey.Entity.Concrete
         public string? Choice3 { get; set;}
         public string? Choice4 { get; set;}
 
-        public ICollection<Question> Questions { get; set; }
+        public int QuestionId { get; set; }
+        public Question Question { get; set; }
     }
 }

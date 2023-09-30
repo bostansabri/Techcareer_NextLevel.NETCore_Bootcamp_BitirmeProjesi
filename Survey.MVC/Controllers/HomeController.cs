@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Survey.MVC.Models;
+using TechSurvey.MVC.Models;
 using System.Diagnostics;
 
-namespace Survey.MVC.Controllers
+namespace TechSurvey.MVC.Controllers
 {
     public class HomeController : Controller
     {

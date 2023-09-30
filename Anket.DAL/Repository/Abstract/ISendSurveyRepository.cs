@@ -5,9 +5,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TechSurvey.Business.Abstract
+namespace TechSurvey.DAL.Repository.Abstract
 {
-    public interface IQuestionManager : IBaseManager<Question>
+    public interface ISendSurveyRepository : IBaseRepository<SendSurvey>
     {
     }
 }

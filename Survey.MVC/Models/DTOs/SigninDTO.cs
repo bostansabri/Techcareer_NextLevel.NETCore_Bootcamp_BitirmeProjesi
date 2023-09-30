@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Survey.MVC.Models.DTOs
+namespace TechSurvey.MVC.Models.DTOs
 {
     public class SigninDTO
     {

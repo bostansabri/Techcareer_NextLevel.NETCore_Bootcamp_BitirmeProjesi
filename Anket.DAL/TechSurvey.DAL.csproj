@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Anket.Entity\Survey.Entity.csproj" />
+    <ProjectReference Include="..\Anket.Entity\TechSurvey.Entity.csproj" />
   </ItemGroup>
 
 </Project>

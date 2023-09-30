@@ -1,4 +1,4 @@
-﻿@using Survey.Entity.Concrete;
+﻿@using TechSurvey.Entity.Concrete;
 @model IEnumerable<Question>
 
 <a class="btn btn-success" asp-action="Create">Yeni Kayit</a>
@@ -7,8 +7,6 @@
         <tr>
             <th>@Html.DisplayNameFor(p=>p.Number)</th>
             <th>@Html.DisplayNameFor(p=>p.Content)</th>
-           
-
         </tr>
     </thead>
     <tbody>
@@ -17,9 +15,6 @@
             <tr>
                 <td>@item.Number</td>
                 <td>@item.Content</td>
-                
-
-               
             </tr>
         }
     </tbody>

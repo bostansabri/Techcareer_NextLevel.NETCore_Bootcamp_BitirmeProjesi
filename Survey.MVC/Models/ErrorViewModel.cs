@@ -1,4 +1,4 @@
-namespace Survey.MVC.Models
+namespace TechSurvey.MVC.Models
 {
     public class ErrorViewModel
     {

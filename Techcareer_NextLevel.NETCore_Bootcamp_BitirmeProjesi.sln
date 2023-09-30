@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Survey.Entity", "Anket.Entity\Survey.Entity.csproj", "{C0935E6D-E482-4CA9-BB9B-FBFFA85253AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechSurvey.Entity", "Anket.Entity\TechSurvey.Entity.csproj", "{C0935E6D-E482-4CA9-BB9B-FBFFA85253AA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Survey.DAL", "Anket.DAL\Survey.DAL.csproj", "{0DC54BF4-66A7-40E1-BA81-D144BB5D3E9B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechSurvey.DAL", "Anket.DAL\TechSurvey.DAL.csproj", "{0DC54BF4-66A7-40E1-BA81-D144BB5D3E9B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Survey.Business", "Survey.Business\Survey.Business.csproj", "{1E49143F-E00D-46C8-93FE-EFD069DB3089}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechSurvey.Business", "Survey.Business\TechSurvey.Business.csproj", "{1E49143F-E00D-46C8-93FE-EFD069DB3089}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Survey.MVC", "Survey.MVC\Survey.MVC.csproj", "{E9D37598-D5E3-4034-83F8-9D5C86776BFB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TechSurvey.MVC", "Survey.MVC\TechSurvey.MVC.csproj", "{E9D37598-D5E3-4034-83F8-9D5C86776BFB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

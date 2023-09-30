@@ -1,4 +1,4 @@
-﻿using Survey.Entity.Abstract;
+﻿using TechSurvey.Entity.Abstract;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Survey.DAL.EntityConfig.Abstract
+namespace TechSurvey.DAL.EntityConfig.Abstract
 {
     public class BaseConfig<T> : IEntityTypeConfiguration<T> where T : BaseEntity
     {

@@ -1,9 +1,10 @@
-﻿using Survey.Business.Abstract;
-using Survey.Business.Concrete;
-using Survey.DAL.Repository.Abstract;
-using Survey.DAL.Repository.Concrete;
+﻿using TechSurvey.Business.Abstract;
+using TechSurvey.Business.Concrete;
+using TechSurvey.DAL.Repository.Abstract;
+using TechSurvey.DAL.Repository.Concrete;
+using TechSurvey.Entity.Concrete;
 
-namespace Survey.MVC.Extensions
+namespace TechSurvey.MVC.Extensions
 {
     public static class AddSurveyService
     {
@@ -12,14 +13,17 @@ namespace Survey.MVC.Extensions
             services.AddScoped<IQuestionRepository, QuestionRepository>();
             services.AddScoped<IQuestionManager, QuestionManager>();
 
-            services.AddScoped<IRoleRepository, RoleRepository>();
-            services.AddScoped<IRoleManager, RoleManager>();
-
-            services.AddScoped<IUserRepository, UserRepository>();
-            services.AddScoped<IUserManager, UserManager>();
-
             services.AddScoped<IChoiceRepository, ChoiceRepository>();
             services.AddScoped<IChoiceManager, ChoiceManager>();
+            
+            services.AddScoped<ISendSurveyDetailsRepository, SendSurveyDetailsRepository>();
+            services.AddScoped<ISendSurveyDetailsManager, SendSurveyDetailsManager>();
+
+            services.AddScoped<ISendSurveyRepository, SendSurveyRepository>();
+            services.AddScoped<ISendSurveyManager, SendSurveyManager>();
+
+            services.AddScoped<ISurveyRepository, SurveyRepository>();
+            services.AddScoped<ISurveyManager, SurveyManager>();
 
             return services;
         }

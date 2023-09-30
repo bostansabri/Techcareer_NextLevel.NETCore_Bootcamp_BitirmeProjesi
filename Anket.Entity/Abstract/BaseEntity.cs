@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Survey.Entity.Abstract
+namespace TechSurvey.Entity.Abstract
 {
     public abstract class BaseEntity
     {

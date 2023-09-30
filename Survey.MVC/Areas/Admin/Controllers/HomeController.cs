@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace Survey.MVC.Areas.Admin.Controllers
+namespace TechSurvey.MVC.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {

@@ -1,16 +1,14 @@
 ﻿using AutoMapper;
-using Survey.Entity.Concrete;
-using Survey.MVC.Models.DTOs;
+using TechSurvey.MVC.Models.DTOs;
+using TechSurvey.Entity.Concrete;
 
-namespace Survey.MVC.AutoMapperProfile
+namespace TechSurvey.MVC.AutoMapperProfile
 {
     public class SurveyProfile : Profile
     {
         public SurveyProfile()
         {
-            CreateMap<RoleDTO, Role>();
-            CreateMap<LoginDTO, User>();
-            CreateMap<SigninDTO, User>();
+            CreateMap<CreateSurveyDTO, Survey>().ReverseMap();
         }
     }
 }

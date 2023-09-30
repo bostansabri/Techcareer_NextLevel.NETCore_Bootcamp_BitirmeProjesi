@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace TechSurvey.Business.Abstract
 {
-    public interface IQuestionManager : IBaseManager<Question>
+    public interface ISendSurveyDetailsManager : IBaseManager<SendSurveyDetails>
     {
     }
 }

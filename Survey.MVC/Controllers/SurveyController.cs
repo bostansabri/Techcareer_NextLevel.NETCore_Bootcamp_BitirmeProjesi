@@ -1,11 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Survey.Business.Abstract;
-using Survey.Business.Concrete;
-using Survey.DAL.Contexts;
-using Survey.Entity.Concrete;
+using TechSurvey.Business.Abstract;
+using TechSurvey.DAL.Contexts;
+using TechSurvey.MVC.Models.DTOs;
 
-namespace Survey.MVC.Controllers
+namespace TechSurvey.MVC.Controllers
 {
     public class SurveyController : Controller
     {
@@ -13,26 +11,32 @@ namespace Survey.MVC.Controllers
         private readonly IChoiceManager choiceManager;
         private readonly SqlDbContext dbContext;
 
-        public SurveyController(SqlDbContext dbContext, QuestionManager questionManager)
+        public SurveyController(SqlDbContext dbContext, IQuestionManager questionManager)
         {
             this.dbContext = dbContext;
             this.questionManager = questionManager;
         }
         public async Task<IActionResult> Index()
         {
-            var survey = await questionManager.GetAllInclude(null, p => p.Content, a => a.Choices);
-            return View(survey);
-        }
-
-        [HttpGet]        
-        public async Task<IActionResult> Create()
-        {
-
+            //var survey = await questionManager.GetAllInclude(null, p => p.Content, a => a.Choices);
             return View();
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Create()
+        {
+            CreateSurveyDTO surveyDTO = new();
+            surveyDTO.Questions = questionManager.GetAllInclude(null, p => p.Choices).Result.ToList();
+            return View(surveyDTO);
+        }
 
 
-    
+        [HttpPost]
+        public async Task<IActionResult> Create(CreateSurveyDTO dTO)
+        {
+            return View(dTO);
+        }
+
+
     }
 }

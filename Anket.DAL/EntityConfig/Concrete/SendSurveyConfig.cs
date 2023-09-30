@@ -9,15 +9,12 @@ using System.Threading.Tasks;
 
 namespace TechSurvey.DAL.EntityConfig.Concrete
 {
-    public class ChoiceConfig : BaseConfig<Choice>
+    public class SendSurveyConfig : BaseConfig<SendSurvey>
     {
-        public override void Configure(EntityTypeBuilder<Choice> builder)
+        public override void Configure(EntityTypeBuilder<SendSurvey> builder)
         {
             base.Configure(builder);
-            builder.Property(p=>p.Choice1).HasMaxLength(50);
-            builder.Property(p=>p.Choice2).HasMaxLength(50);
-            builder.Property(p=>p.Choice3).HasMaxLength(50);
-            builder.Property(p=>p.Choice4).HasMaxLength(50);
+            builder.Property(p => p.SendedEmail).HasMaxLength(100);
         }
     }
 }

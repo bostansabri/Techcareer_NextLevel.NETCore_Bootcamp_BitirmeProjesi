@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace TechSurvey.DAL.Repository.Concrete
 {
-    public class ChoiceRepository : BaseRepository<Choice>, IChoiceRepository
+    public class SendSurveyDetailsRepository : BaseRepository<SendSurveyDetails>, ISendSurveyDetailsRepository
     {
     }
 }
