@@ -4,9 +4,9 @@ using TechSurvey.Entity.Concrete;
 
 namespace TechSurvey.MVC.AutoMapperProfile
 {
-    public class SurveyProfile : Profile
+    public class TechSurveyProfile : Profile
     {
-        public SurveyProfile()
+        public TechSurveyProfile()
         {
             CreateMap<CreateSurveyDTO, Survey>().ReverseMap();
         }

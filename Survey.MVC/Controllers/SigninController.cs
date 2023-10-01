@@ -11,14 +11,12 @@ namespace TechSurvey.MVC.Controllers
     public class SigninController : Controller
     {
         private readonly IMapper mapper;
-        private readonly UserManager<AppUser> userManager;
         private readonly SignInManager<AppUser> signInManager;
         private readonly SqlDbContext dbContext;
 
-        public SigninController(IMapper mapper, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
+        public SigninController(IMapper mapper, SignInManager<AppUser> signInManager)
         {
             this.mapper = mapper;
-            this.userManager = userManager;
             this.signInManager = signInManager;
             this.dbContext = dbContext;
         }

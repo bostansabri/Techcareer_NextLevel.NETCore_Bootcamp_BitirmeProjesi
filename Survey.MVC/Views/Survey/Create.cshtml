@@ -1,58 +1,68 @@
 ﻿@using TechSurvey.MVC.Models.DTOs;
 @model CreateSurveyDTO
 
+<style>
+    body {
+        background-color: #6A6A6A
+    }
+</style>
+<h2 style="text-align: center; color: red;">You can create a survey with only 4 questions without becoming a member.</h2>
+<h2 style="text-align: center">If you want more, sign in <a asp-controller="Signin" asp-action="Index">here!</a></h2>
+<br />
+
 <div class="card">
-	<div class="card-header">
-		<h4>New Survey</h4>
-	</div>
-	<div class="card-body">
-		<form asp-action="Create" asp-controller="Survey" method="post">
-			<div class="mb-3">
-				<label asp-for="@Model.Email" class="form-label">Enter Email</label>
-				<input asp-for="@Model.Email" class="form-control">
-				<span asp-validation-for="@Model.Email" class="text-danger"></span>
-			</div>
-			<div class="mb-3">
-				<label asp-for="@Model.SurveyName" class="form-label">Enter Survey Name</label>
-				<input asp-for="@Model.SurveyName" class="form-control">
-				<span asp-validation-for="@Model.SurveyName" class="text-danger"></span>
-			</div>
-			@foreach (var question in Model.Questions)
-			{
-				<div class="card">
-					<div class="card-header">
-						<h4>@question.Content</h4>
-					</div>
-					<div class="card-body">
-						<ul class="list-group" >
-							<input type="checkbox" />@question.Content
-						   @foreach (var choice in question.Choices)
-							{
-								<li class="list-group-item">@choice.Choice1</li>
-								<li class="list-group-item">@choice.Choice2</li>
-								<li class="list-group-item">@choice.Choice3</li>
-								<li class="list-group-item">@choice.Choice4</li>
-							}
-							
-							
-							@*@for (int i = 0; i < soru.Choices.Count; i++)
-							{
-								<li class="list-group-item">@soru.Choices[i].Choice1</li>
-								<li class="list-group-item">@choice.Choice2</li>
-								<li class="list-group-item">@choice.Choice3</li>
-								<li class="list-group-item">@choice.Choice4</li>
-							}		*@					
-								
-							
-						</ul>
-					</div>
-
-				</div>	
-			}
-
-			<div class="mb-3">
-				<button type="submit" class="btn btn-success">Kaydet</button>
-				</div>
-		</form>
-	</div>
+    <div class="card-header">
+        <h4>Please Enter Email Adress and Survey Name</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" asp-controller="Survey" method="post">
+            <div class="mb-3">
+                <input asp-for="@Model.Email" class="form-control" placeholder="Enter Email">
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <input asp-for="@Model.SurveyName" class="form-control" placeholder="Enter Survey Name">
+                <span asp-validation-for="@Model.SurveyName" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div class="card">
+    <div class="card-header">
+        <h4>Please Select 4 Questions For Your Survey</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" asp-controller="Survey" method="post">
+            @foreach (var question in Model.Questions)
+            {
+                <div class="card">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            @question.Number - @question.Content
+                        </label>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            @foreach (var choice in question.Choices)
+                            {
+                                <li class="list-group-item">A) @choice.Choice1</li>
+                                <li class="list-group-item">B) @choice.Choice2</li>
+                                <li class="list-group-item">C) @choice.Choice3</li>
+                                <li class="list-group-item">D) @choice.Choice4</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <br />
+            }
+            <br />
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="reset" class="btn btn-danger">Reset</button>
+            </div>
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Index">Back</a>
+        </form>
+    </div>
 </div>

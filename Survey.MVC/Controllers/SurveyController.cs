@@ -34,7 +34,9 @@ namespace TechSurvey.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateSurveyDTO dTO)
         {
-            return View(dTO);
+            CreateSurveyDTO surveyDTO = new();
+            surveyDTO.Questions = questionManager.GetAllInclude(null, p => p.Choices).Result.ToList();
+            return View(surveyDTO);
         }
 
 
