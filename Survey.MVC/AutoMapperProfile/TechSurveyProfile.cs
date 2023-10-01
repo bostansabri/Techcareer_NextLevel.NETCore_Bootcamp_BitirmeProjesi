@@ -8,7 +8,7 @@ namespace TechSurvey.MVC.AutoMapperProfile
     {
         public TechSurveyProfile()
         {
-            CreateMap<CreateSurveyDTO, Survey>().ReverseMap();
+            CreateMap<SurveyCreateDTO, Survey>().ReverseMap();
             CreateMap<SigninDTO, AppUser>();
         }
     }

@@ -1,0 +1,181 @@
+﻿@using TechSurvey.MVC.Areas.Admin.Models.DTOs
+@model QuestionCreateDTO
+
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/assets_adminpanel/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="~/assets_adminpanel/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/libs/apex-charts/apex-charts.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="~/assets_adminpanel/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="~/assets_adminpanel/js/config.js"></script>
+
+    <title>Manage Categories</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            background: #edf1f5;
+            margin-top: 20px;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 0 solid transparent;
+            border-radius: 0;
+        }
+
+        .btn-circle.btn-lg, .btn-group-lg > .btn-circle.btn {
+            width: 50px;
+            height: 50px;
+            padding: 14px 15px;
+            font-size: 18px;
+            line-height: 23px;
+        }
+
+        .text-muted {
+            color: #8898aa !important;
+        }
+
+        [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+            cursor: pointer;
+        }
+
+        .btn-circle {
+            border-radius: 100%;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+        }
+
+        .user-table tbody tr .category-select {
+            max-width: 150px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase mb-0">Manage Questions</h5>
+                            </div>
+                            <div class="card-body">
+                                <a asp-area="Admin" asp-action="Create" asp-controller="Question" button type="button" class="btn btn-secondary btn-lg">Add Questions</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table no-wrap user-table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="border-0 text-uppercase font-medium">Number</th>
+                                            <th scope="col" class="border-0 text-uppercase font-medium">Content</th>
+                                            <th scope="col" class="border-0 text-uppercase font-medium">Choices</th>
+                                            <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var question in Model.Questions)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    @question.Number
+                                                </td>
+                                                <td>
+                                                    @question.Content
+                                                </td>
+                                                <td class="card-body">
+                                                    <ul class="list-group">
+                                                        @foreach (var choice in question.Choices)
+                                                        {
+                                                            <li class="list-group-item">A) @choice.Choice1</li>
+                                                            <li class="list-group-item">B) @choice.Choice2</li>
+                                                            <li class="list-group-item">C) @choice.Choice3</li>
+                                                            <li class="list-group-item">D) @choice.Choice4</li>
+                                                        }
+                                                    </ul>
+                                                </td>
+                                                <td>
+                                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="AdminArea" asp-controller="Category" asp-action="Delete" asp-route-id="@question.Id"><i class="fa fa-trash"></i></a>
+                                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="AdminArea" asp-controller="Category" asp-action="Edit" asp-route-id="@question.Id"><i class="fa fa-edit"></i></a>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+
+    <!-- Core JS -->
+    <!-- build:js assets_adminpanel/vendor/js/core.js -->
+    <script src="~/assets_adminpanel/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/assets_adminpanel/vendor/libs/popper/popper.js"></script>
+    <script src="~/assets_adminpanel/vendor/js/bootstrap.js"></script>
+    <script src="~/assets_adminpanel/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="~/assets_adminpanel/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <script src="~/assets_adminpanel/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/assets_adminpanel/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="~/assets_adminpanel/js/dashboards-analytics.js"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>

@@ -1,0 +1,120 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>DashRock - Bootstrap 4 Admin Dashboard Template</title>
+    <!--favicon-->
+    <link rel="icon" href="~/assets_adminarea/images/favicon.ico" type="image/x-icon">
+    <!-- simplebar CSS-->
+    <link href="~/assets_adminarea/plugins/simplebar/css/simplebar.css" rel="stylesheet" />
+    <!-- Bootstrap core CSS-->
+    <link href="~/assets_adminarea/css/bootstrap.min.css" rel="stylesheet" />
+    <!-- animate CSS-->
+    <link href="~/assets_adminarea/css/animate.css" rel="stylesheet" type="text/css" />
+    <!-- Icons CSS-->
+    <link href="~/assets_adminarea/css/icons.css" rel="stylesheet" type="text/css" />
+    <!-- Sidebar CSS-->
+    <link href="~/assets_adminarea/css/sidebar-menu.css" rel="stylesheet" />
+    <!-- Custom Style-->
+    <link href="~/assets_adminarea/css/app-style.css" rel="stylesheet" />
+
+</head>
+<body>
+    <!-- Start wrapper-->
+    <div id="wrapper">
+        <!--Start sidebar-wrapper-->
+        <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+            <div class="brand-logo">
+                <a href="index.html">
+                    <h5 class="logo-text">Survey</h5>
+                </a>
+            </div>
+            <ul class="sidebar-menu do-nicescrol">
+                <li class="sidebar-header">MAIN NAVIGATION</li>
+                <li>
+                    <a href="index.html" class="waves-effect">
+                        <i class="icon-home"></i><span>Dashboard</span><i class="fa fa-angle-left pull-right"></i>
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="default" asp-controller="Login" asp-action="Logout" class="waves-effect">
+                        <i class="icon-grid"></i><span>Logout</span>
+                        <i class="fa fa-angle-left float-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <!--End sidebar-wrapper-->
+        <div class="content-wrapper">
+            <div class="container-fluid">
+                <h6 class="text-uppercase">Cards With Images</h6>
+                <hr>
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="card card-primary">
+                            <img src="~/assets_adminarea/images/gallery/1.jpg" class="card-img-top" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Questions</h5>
+                                <hr>
+                                <a asp-area="Admin" asp-controller="Question" asp-action="Index" class="btn btn-primary waves-effect waves-light m-1"><i class="fa fa-star mr-1"></i> Questions</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card card-primary">
+                            <img src="~/assets_adminarea/images/gallery/1.jpg" class="card-img-top" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Questions</h5>
+                                <hr>
+                                <a href="javascript:void();" class="btn btn-primary waves-effect waves-light m-1"><i class="fa fa-star mr-1"></i> Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="card card-primary">
+                            <img src="~/assets_adminarea/images/gallery/1.jpg" class="card-img-top" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title text-primary">Questions</h5>
+                                <hr>
+                                <a href="javascript:void();" class="btn btn-primary waves-effect waves-light m-1"><i class="fa fa-star mr-1"></i> Edit</a>
+                            </div>
+                        </div>
+                    </div>
+                </div><!--End Row-->
+                @RenderBody()
+            </div><!--End Row-->
+        </div>
+        <!-- End container-fluid-->
+    </div><!--End content-wrapper-->
+    <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+    <!--Start footer-->
+    <footer class="footer">
+        <div class="container">
+            <div class="text-center">
+                TechCareer Next Level .Net Bootcamp Final Project
+            </div>
+        </div>
+    </footer>
+    <!--End footer-->
+    </div><!--End wrapper-->
+    <!-- Bootstrap core JavaScript-->
+    <script src="~/assets_adminarea/js/jquery.min.js"></script>
+    <script src="~/assets_adminarea/js/popper.min.js"></script>
+    <script src="~/assets_adminarea/js/bootstrap.min.js"></script>
+
+    <!-- simplebar js -->
+    <script src="~/assets_adminarea/plugins/simplebar/js/simplebar.js"></script>
+    <!-- waves effect js -->
+    <script src="~/assets_adminarea/js/waves.js"></script>
+    <!-- sidebar-menu js -->
+    <script src="~/assets_adminarea/js/sidebar-menu.js"></script>
+    <!-- Custom scripts -->
+    <script src="~/assets_adminarea/js/app-script.js"></script>
+</body>
+</html>

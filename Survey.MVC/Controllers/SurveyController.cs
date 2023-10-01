@@ -18,27 +18,22 @@ namespace TechSurvey.MVC.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            //var survey = await questionManager.GetAllInclude(null, p => p.Content, a => a.Choices);
             return View();
         }
 
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            CreateSurveyDTO surveyDTO = new();
+            SurveyCreateDTO surveyDTO = new();
             surveyDTO.Questions = questionManager.GetAllInclude(null, p => p.Choices).Result.ToList();
             return View(surveyDTO);
         }
-
 
         [HttpPost]
-        public async Task<IActionResult> Create(CreateSurveyDTO dTO)
+        public async Task<IActionResult> Create(SurveyCreateDTO surveyCreateDTO)
         {
-            CreateSurveyDTO surveyDTO = new();
-            surveyDTO.Questions = questionManager.GetAllInclude(null, p => p.Choices).Result.ToList();
-            return View(surveyDTO);
+            surveyCreateDTO.Questions = questionManager.GetAllInclude(null, p => p.Choices).Result.ToList();
+            return View(surveyCreateDTO);
         }
-
-
     }
 }
