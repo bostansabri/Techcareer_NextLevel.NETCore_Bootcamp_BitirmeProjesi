@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using TechSurvey.MVC.Models.DTOs;
 using TechSurvey.Entity.Concrete;
+using TechSurvey.MVC.Models.DTOs;
 
 namespace TechSurvey.MVC.AutoMapperProfile
 {
@@ -9,6 +9,7 @@ namespace TechSurvey.MVC.AutoMapperProfile
         public TechSurveyProfile()
         {
             CreateMap<CreateSurveyDTO, Survey>().ReverseMap();
+            CreateMap<SigninDTO, AppUser>();
         }
     }
 }

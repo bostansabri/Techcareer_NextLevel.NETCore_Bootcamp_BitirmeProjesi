@@ -1,13 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Mvc;
-using TechSurvey.Business.Abstract;
-using TechSurvey.MVC.Models.DTOs;
-using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
-
-using TechSurvey.Entity.Concrete;
+﻿using AutoMapper;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using TechSurvey.Entity.Concrete;
 using TechSurvey.MVC.Models.DTOs;
 
@@ -16,12 +9,19 @@ namespace TechSurvey.MVC.Controllers
     public class LoginController : Controller
     {
         private readonly UserManager<AppUser> userManager;
+        private readonly RoleManager<IdentityRole> roleManager;
+        private readonly SignInManager<AppUser> signInManager;
+        private readonly IMapper mapper;
 
-        public LoginController(UserManager<AppUser> userManager)
+        public LoginController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, SignInManager<AppUser> signInManager, IMapper mapper)
         {
             this.userManager = userManager;
+            this.roleManager = roleManager;
+            this.signInManager = signInManager;
+            this.mapper = mapper;
         }
 
+        #region Login
         [HttpGet]
         public IActionResult Index()
         {
@@ -35,34 +35,71 @@ namespace TechSurvey.MVC.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "Wrong Password or Email Adress");
                 return View(loginDTO);
             }
-            //var user = userManager.GetAllInclude(p => p.Email == loginDTO.Email && p.Password == loginDTO.Password, p => p.Roles).Result.FirstOrDefault();
 
-            //if (user != null)
-            //{
-            //    var roles = user.Roles.ToList();
-            //    List<Claim> claims = new List<Claim>()
-            //    {
-            //    new Claim(ClaimTypes.Email, user.Email),
-            //    new Claim(ClaimTypes.Name,user.Name + " " + user.Surname),
-            //    new Claim(ClaimTypes.NameIdentifier,user.Id.ToString())
-            //    };
+            AppUser? user = await userManager.FindByEmailAsync(loginDTO.Email);
 
-            //    foreach (var role in roles)
-            //    {
-            //        claims.Add(new Claim(ClaimTypes.Role, role.RoleName));
-            //    }
-            //    var identity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
-            //    var principle = new ClaimsPrincipal(identity);
-            //    await HttpContext.SignInAsync(principle, new AuthenticationProperties()
-            //    {
-            //        IsPersistent = (bool)loginDTO.RememberMe
-            //    });
-            //}
+            var result = await signInManager.PasswordSignInAsync(user, loginDTO.Password, true, true);
+            var role = userManager.GetRolesAsync(user).Result.FirstOrDefault();
 
-            //ModelState.AddModelError("", "Wrong Password or Email Adress");
+            if (result.Succeeded)
+            {
+                if (role == "Admin")
+                {
+                    return RedirectToAction("Index", "Home", new { Area = "Admin" });
+                }
+                else if (role == "Member")
+                {
+                    return RedirectToAction("Index", "Home", new { Area = "Member" });
+                }
+            }
             return View(loginDTO);
         }
+        #endregion
+
+        #region Logout
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
+        #endregion
+
+        #region Singin
+        [HttpGet]
+        public async Task<IActionResult> Signin()
+        {
+            SigninDTO signinDTO = new SigninDTO();
+            return View(signinDTO);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Signin(SigninDTO signinDTO)
+        {
+            AppUser user = mapper.Map<AppUser>(signinDTO);
+            user.UserName = signinDTO.Email;
+
+            var result = await userManager.CreateAsync(user, signinDTO.Password);
+            if (result.Succeeded)
+            {
+                var userRole = await roleManager.FindByNameAsync("Member");
+                if (userRole == null)
+                {
+                    userRole = new IdentityRole();
+                    userRole.Name = "Member";
+                    await roleManager.CreateAsync(userRole);
+
+                }
+                await userManager.AddToRoleAsync(user, userRole.Name);
+
+                return RedirectToAction("Index", "Login", new { Area = "Member" });
+
+            }
+            ModelState.AddModelError("", "Kayıt Başarısız");
+            return View(signinDTO);
+        }
+        #endregion
     }
 }

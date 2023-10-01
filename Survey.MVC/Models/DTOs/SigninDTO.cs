@@ -5,7 +5,7 @@ namespace TechSurvey.MVC.Models.DTOs
     public class SigninDTO
     {
         //--------------------------------------------------
-        [Required(AllowEmptyStrings = false, ErrorMessage ="Enter Name")]
+        [Required(AllowEmptyStrings = false, ErrorMessage = "Enter Name")]
         public string Name { get; set; }
         //--------------------------------------------------
         [Required(AllowEmptyStrings = false, ErrorMessage = "Enter Surname")]
@@ -24,6 +24,5 @@ namespace TechSurvey.MVC.Models.DTOs
         [Compare("Password", ErrorMessage = "Password Does Not Match")]
         public string RePasword { get; set; }
         //--------------------------------------------------
-
     }
 }
