@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using TechSurvey.DAL.Contexts;
@@ -10,8 +9,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-
+//builder.Configuration.GetConnectionString("TechcareerSurveyDb")
 builder.Services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TechcareerSurveyDb")));
+//.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
 #region Identity Configuration
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
@@ -39,23 +39,23 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     }).AddEntityFrameworkStores<SqlDbContext>()
     .AddDefaultTokenProviders();
 
-    #region Cookie Settings.
-    builder.Services.ConfigureApplicationCookie(options =>
-    {
-        options.Cookie.Name = "MyDukkan";
-        options.LoginPath = "/Login";
-        options.LogoutPath = "/Logout";
-        options.AccessDeniedPath = "/AccessDenied";
+#region Cookie Settings.
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.Name = "MyDukkan";
+    options.LoginPath = "/Login";
+    options.LogoutPath = "/Logout";
+    options.AccessDeniedPath = "/AccessDenied";
 
-        options.Cookie.HttpOnly = true;
-        options.SlidingExpiration = true;
-        options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
-    });
+    options.Cookie.HttpOnly = true;
+    options.SlidingExpiration = true;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+});
 
-    builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
-    {
+builder.Services.Configure<DataProtectionTokenProviderOptions>(options =>
+{
     options.TokenLifespan = TimeSpan.FromMinutes(5);
-    });
+});
 #endregion
 
 #endregion
@@ -92,7 +92,7 @@ app.UseEndpoints(endpoints =>
 #region Map Controller Route
 app.MapControllerRoute(
 name: "default",
-pattern: "{controller=Home}/{action=Index}/{id?}"); 
+pattern: "{controller=Home}/{action=Index}/{id?}");
 #endregion
 
 app.Run();

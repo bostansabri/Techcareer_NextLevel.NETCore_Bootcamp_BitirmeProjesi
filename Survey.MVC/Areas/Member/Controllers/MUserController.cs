@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+using TechSurvey.DAL.Contexts;
 using TechSurvey.Entity.Concrete;
 
 namespace TechSurvey.MVC.Areas.Member.Controllers
@@ -11,16 +11,19 @@ namespace TechSurvey.MVC.Areas.Member.Controllers
     public class MUserController : Controller
     {
         private readonly UserManager<AppUser> userManager;
+        private readonly SqlDbContext dbContext;
 
-        public MUserController(UserManager<AppUser> userManager)
+        public MUserController(UserManager<AppUser> userManager, SqlDbContext dbContext)
         {
             this.userManager = userManager;
+            this.dbContext = dbContext;
         }
         public async Task<IActionResult> Index()
         {
-            var users = await userManager.Users.ToListAsync();
-
-            return View(users);
+            string userEmail = dbContext.Users.First().Email;
+            var user = await userManager.FindByEmailAsync(userEmail);
+            var userList = new List<AppUser> { user };
+            return View(userList);
         }
         public async Task<ActionResult> Delete(string id)
         {

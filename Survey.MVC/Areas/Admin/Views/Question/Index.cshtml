@@ -1,5 +1,5 @@
-﻿@using TechSurvey.MVC.Areas.Admin.Models.DTOs
-@model QuestionCreateDTO
+﻿@using TechSurvey.Entity.Concrete;
+@model IEnumerable<Question>
 
 
 @{
@@ -116,7 +116,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach (var question in Model.Questions)
+                                       @foreach (var question in Model)
                                         {
                                             <tr>
                                                 <td>
@@ -125,17 +125,14 @@
                                                 <td>
                                                     @question.Content
                                                 </td>
-                                                <td class="card-body">
-                                                    <ul class="list-group">
-                                                        @foreach (var choice in question.Choices)
+                                                <td>
+                                                    @{
+                                                        string choices = "";
+                                                        foreach (var choice in question.Choices)
                                                         {
-                                                            <li class="list-group-item">A) @choice.Choice1</li>
-                                                            <li class="list-group-item">B) @choice.Choice2</li>
-                                                            <li class="list-group-item">C) @choice.Choice3</li>
-                                                            <li class="list-group-item">D) @choice.Choice4</li>
-                                                            <li class="list-group-item">D) @choice.Choice5</li>
+                                                            choices += choice.Text + "-";
                                                         }
-                                                    </ul>
+                                                    } @choices
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Delete" asp-route-id="@question.Id"><i class="fa fa-trash"></i></a>

@@ -67,3 +67,31 @@
         </form>
     </div>
 </div>
+@section Scripts
+{
+    <script type="text/javascript">
+    $(document).ready(function(){
+            sessionStorage.setItem("select","0")
+
+            $(".form-check-input").click(function(){
+
+                let select = sessionStorage.getItem("select");
+                console.log("Found Selection Value :" + select.toString());
+                if (select > 3) {
+                    Swal.fire(
+                        'Attention!',
+                        'You cannot choose more than 4 questions!',
+                        'Unsuccessful!'
+                    )
+                    return;
+                    }
+                    else    
+                    {
+                    let intSelect = parseInt(select) + 1;
+                    console.log(intSelect);
+                    sessionStorage.setItem("select", intSelect.toString());
+                    }
+            });
+    });  
+    </script>
+}

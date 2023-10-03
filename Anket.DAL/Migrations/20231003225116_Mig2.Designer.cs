@@ -12,8 +12,8 @@ using TechSurvey.DAL.Contexts;
 namespace TechSurvey.DAL.Migrations
 {
     [DbContext(typeof(SqlDbContext))]
-    [Migration("20231002115030_Mig3")]
-    partial class Mig3
+    [Migration("20231003225116_Mig2")]
+    partial class Mig2
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -275,13 +275,21 @@ namespace TechSurvey.DAL.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("Choice5")
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 2, 14, 50, 30, 812, DateTimeKind.Local).AddTicks(1280));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(2886));
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -305,7 +313,7 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 2, 14, 50, 30, 812, DateTimeKind.Local).AddTicks(3868));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(4391));
 
                     b.Property<string>("Number")
                         .HasMaxLength(10)
@@ -327,7 +335,7 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 2, 14, 50, 30, 812, DateTimeKind.Local).AddTicks(8044));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(5755));
 
                     b.Property<string>("SendedEmail")
                         .IsRequired()
@@ -355,7 +363,7 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 2, 14, 50, 30, 813, DateTimeKind.Local).AddTicks(870));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(7050));
 
                     b.Property<string>("RecipientEmail")
                         .IsRequired()
@@ -388,7 +396,7 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 2, 14, 50, 30, 813, DateTimeKind.Local).AddTicks(3487));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(8574));
 
                     b.Property<string>("CreateMail")
                         .IsRequired()

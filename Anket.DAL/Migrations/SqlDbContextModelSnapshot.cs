@@ -27,6 +27,9 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("AppUserId")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
@@ -40,6 +43,8 @@ namespace TechSurvey.DAL.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
@@ -274,10 +279,14 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 3, 23, 51, 41, 991, DateTimeKind.Local).AddTicks(7804));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(2886));
 
                     b.Property<int>("QuestionId")
                         .HasColumnType("int");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -301,7 +310,7 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 3, 23, 51, 41, 991, DateTimeKind.Local).AddTicks(9931));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(4391));
 
                     b.Property<string>("Number")
                         .HasMaxLength(10)
@@ -323,7 +332,7 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 3, 23, 51, 41, 992, DateTimeKind.Local).AddTicks(1647));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(5755));
 
                     b.Property<string>("SendedEmail")
                         .IsRequired()
@@ -351,7 +360,7 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 3, 23, 51, 41, 992, DateTimeKind.Local).AddTicks(3281));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(7050));
 
                     b.Property<string>("RecipientEmail")
                         .IsRequired()
@@ -384,7 +393,7 @@ namespace TechSurvey.DAL.Migrations
                     b.Property<DateTime>("CreateDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("datetime2")
-                        .HasDefaultValue(new DateTime(2023, 10, 3, 23, 51, 41, 992, DateTimeKind.Local).AddTicks(5453));
+                        .HasDefaultValue(new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(8574));
 
                     b.Property<string>("CreateMail")
                         .IsRequired()
@@ -402,6 +411,13 @@ namespace TechSurvey.DAL.Migrations
                         .IsUnique();
 
                     b.ToTable("Surveys");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
+                {
+                    b.HasOne("TechSurvey.Entity.Concrete.AppUser", null)
+                        .WithMany("Roles")
+                        .HasForeignKey("AppUserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -501,6 +517,11 @@ namespace TechSurvey.DAL.Migrations
                         .IsRequired();
 
                     b.Navigation("SendSurvey");
+                });
+
+            modelBuilder.Entity("TechSurvey.Entity.Concrete.AppUser", b =>
+                {
+                    b.Navigation("Roles");
                 });
 
             modelBuilder.Entity("TechSurvey.Entity.Concrete.Question", b =>

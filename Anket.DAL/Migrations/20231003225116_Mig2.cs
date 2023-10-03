@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace TechSurvey.DAL.Migrations
 {
     /// <inheritdoc />
-    public partial class Mig4 : Migration
+    public partial class Mig2 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -16,64 +16,64 @@ namespace TechSurvey.DAL.Migrations
                 table: "Surveys",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 87, DateTimeKind.Local).AddTicks(4600),
+                defaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(8574),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 813, DateTimeKind.Local).AddTicks(3487));
+                oldDefaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(9701));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreateDate",
                 table: "SendSurveyDetails",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 87, DateTimeKind.Local).AddTicks(100),
+                defaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(7050),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 813, DateTimeKind.Local).AddTicks(870));
+                oldDefaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(8300));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreateDate",
                 table: "SendSurvey",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 86, DateTimeKind.Local).AddTicks(6232),
+                defaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(5755),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 812, DateTimeKind.Local).AddTicks(8044));
+                oldDefaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(7256));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreateDate",
                 table: "Questions",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 86, DateTimeKind.Local).AddTicks(2180),
+                defaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(4391),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 812, DateTimeKind.Local).AddTicks(3868));
+                oldDefaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(6122));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreateDate",
                 table: "Choices",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 85, DateTimeKind.Local).AddTicks(8017),
+                defaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(2886),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 812, DateTimeKind.Local).AddTicks(1280));
+                oldDefaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(4669));
 
             migrationBuilder.AddColumn<string>(
-                name: "Choice5",
+                name: "Text",
                 table: "Choices",
-                type: "nvarchar(50)",
-                maxLength: 50,
-                nullable: true);
+                type: "nvarchar(max)",
+                nullable: false,
+                defaultValue: "");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropColumn(
-                name: "Choice5",
+                name: "Text",
                 table: "Choices");
 
             migrationBuilder.AlterColumn<DateTime>(
@@ -81,50 +81,50 @@ namespace TechSurvey.DAL.Migrations
                 table: "Surveys",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 813, DateTimeKind.Local).AddTicks(3487),
+                defaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(9701),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 87, DateTimeKind.Local).AddTicks(4600));
+                oldDefaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(8574));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreateDate",
                 table: "SendSurveyDetails",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 813, DateTimeKind.Local).AddTicks(870),
+                defaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(8300),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 87, DateTimeKind.Local).AddTicks(100));
+                oldDefaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(7050));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreateDate",
                 table: "SendSurvey",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 812, DateTimeKind.Local).AddTicks(8044),
+                defaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(7256),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 86, DateTimeKind.Local).AddTicks(6232));
+                oldDefaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(5755));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreateDate",
                 table: "Questions",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 812, DateTimeKind.Local).AddTicks(3868),
+                defaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(6122),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 86, DateTimeKind.Local).AddTicks(2180));
+                oldDefaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(4391));
 
             migrationBuilder.AlterColumn<DateTime>(
                 name: "CreateDate",
                 table: "Choices",
                 type: "datetime2",
                 nullable: false,
-                defaultValue: new DateTime(2023, 10, 2, 14, 50, 30, 812, DateTimeKind.Local).AddTicks(1280),
+                defaultValue: new DateTime(2023, 10, 4, 0, 41, 23, 39, DateTimeKind.Local).AddTicks(4669),
                 oldClrType: typeof(DateTime),
                 oldType: "datetime2",
-                oldDefaultValue: new DateTime(2023, 10, 3, 14, 5, 39, 85, DateTimeKind.Local).AddTicks(8017));
+                oldDefaultValue: new DateTime(2023, 10, 4, 1, 51, 16, 480, DateTimeKind.Local).AddTicks(2886));
         }
     }
 }

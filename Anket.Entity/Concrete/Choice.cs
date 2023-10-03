@@ -9,6 +9,7 @@ namespace TechSurvey.Entity.Concrete
         public string? Choice3 { get; set; }
         public string? Choice4 { get; set; }
         public string? Choice5 { get; set; }
+        public string? Text { get; set; }
 
         public int QuestionId { get; set; }
         public Question Question { get; set; }

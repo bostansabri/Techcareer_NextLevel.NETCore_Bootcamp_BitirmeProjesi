@@ -1,7 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using TechSurvey.Business.Abstract;
 using TechSurvey.DAL.Contexts;
@@ -27,29 +26,41 @@ namespace TechSurvey.MVC.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index()
         {
-            QuestionCreateDTO questionCreateDTO = new();
-            questionCreateDTO.Questions = questionManager.GetAllInclude(null, p => p.Choices).Result.ToList();
-            return View(questionCreateDTO);
+            var result = questionManager.GetAllInclude(null, p => p.Choices).Result.ToList();
+            return View(result);
         }
 
         [HttpGet]
         public async Task<IActionResult> Create()
         {
             QuestionCreateDTO questionCreateDTO = new();
-            var choice = questionManager.GetAllAsync().Result.Select(p => new SelectListItem { Value = p.Id.ToString() });
-
-            ViewBag.Choice = choice;
             return View(questionCreateDTO);
         }
 
-        [HttpPost, ActionName("Create")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(QuestionCreateDTO questionCreateDTO)
         {
             if (ModelState.IsValid)
             {
-                questionCreateDTO.Questions = questionManager.GetAllInclude(null, p => p.Choices).Result.ToList();
+                var question = mapper.Map<Question>(questionCreateDTO);
+
+                var choices = new List<Choice>();
+
+                choices.Add(new Choice { Text = questionCreateDTO.Choice1 });
+                choices.Add(new Choice { Text = questionCreateDTO.Choice2 });
+                choices.Add(new Choice { Text = questionCreateDTO.Choice3 });
+                choices.Add(new Choice { Text = questionCreateDTO.Choice4 });
+                choices.Add(new Choice { Text = questionCreateDTO.Choice5 });
+
+                question.Choices = choices;
+
+                dbContext.Questions.Add(question);
+                await dbContext.SaveChangesAsync();
+
+                return RedirectToAction(nameof(Index));
             }
+
             return View(questionCreateDTO);
         }
 
@@ -92,6 +103,7 @@ namespace TechSurvey.MVC.Areas.Admin.Controllers
 
         public async Task<IActionResult> Edit(int? id)
         {
+            QuestionCreateDTO questionCreateDTO = new QuestionCreateDTO();
             if (id == null || dbContext.Questions == null)
             {
                 return NotFound();
@@ -102,13 +114,14 @@ namespace TechSurvey.MVC.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            return View(question);
+            return View(questionCreateDTO);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, Question question)
         {
+            QuestionCreateDTO questionCreateDTO = new QuestionCreateDTO();
             if (id != question.Id)
             {
                 return NotFound();
@@ -133,7 +146,7 @@ namespace TechSurvey.MVC.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(question);
+            return View(questionCreateDTO);
         }
 
         private bool QuestionExists(int id)
