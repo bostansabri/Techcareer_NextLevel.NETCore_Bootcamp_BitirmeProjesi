@@ -113,44 +113,47 @@
                     <span asp-validation-for="@Model.Choices" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                        @foreach (var question in Model.Questions)
-                        {
-                            <tr>
-                                <td>
-                                    @question.Number
-                                </td>
-                                <td>
-                                    @question.Content
-                                </td>
-                                <td class="card-body">
-                                    <ul class="list-group">
-                                        @foreach (var choice in question.Choices)
-                                        {
-                                            <label asp-for="@choice.Choice1" class="form-label">A</label>
-                                            <input asp-for="@choice.Choice1" class="form-control">
-                                            <span asp-validation-for="@choice.Choice1" class="text-danger"></span>
-                                            <label asp-for="@choice.Choice2" class="form-label">B</label>
-                                            <input asp-for="@choice.Choice2" class="form-control">
-                                            <span asp-validation-for="@choice.Choice2" class="text-danger"></span>
-                                            <label asp-for="@choice.Choice3" class="form-label">C</label>
-                                            <input asp-for="@choice.Choice3" class="form-control">
-                                            <span asp-validation-for="@choice.Choice3" class="text-danger"></span>
-                                            <label asp-for="@choice.Choice4" class="form-label">D</label>
-                                            <input asp-for="@choice.Choice4" class="form-control">
-                                            <span asp-validation-for="@choice.Choice4" class="text-danger"></span>
-                                        }
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Delete" asp-route-id="@question.Id"><i class="fa fa-trash"></i></a>
-                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Edit" asp-route-id="@question.Id"><i class="fa fa-edit"></i></a>
-                                </td>
-                            </tr>
-                        }
+                    @foreach (var question in Model.Questions)
+                    {
+                        <tr>
+                            <td>
+                                @question.Number
+                            </td>
+                            <td>
+                                @question.Content
+                            </td>
+                            <td class="card-body">
+                                <ul class="list-group">
+                                    @foreach (var choice in question.Choices)
+                                    {
+                                        <label asp-for="@choice.Choice1" class="form-label">A</label>
+                                        <input asp-for="@choice.Choice1" class="form-control">
+                                        <span asp-validation-for="@choice.Choice1" class="text-danger"></span>
+                                        <label asp-for="@choice.Choice2" class="form-label">B</label>
+                                        <input asp-for="@choice.Choice2" class="form-control">
+                                        <span asp-validation-for="@choice.Choice2" class="text-danger"></span>
+                                        <label asp-for="@choice.Choice3" class="form-label">C</label>
+                                        <input asp-for="@choice.Choice3" class="form-control">
+                                        <span asp-validation-for="@choice.Choice3" class="text-danger"></span>
+                                        <label asp-for="@choice.Choice4" class="form-label">D</label>
+                                        <input asp-for="@choice.Choice4" class="form-control">
+                                        <span asp-validation-for="@choice.Choice4" class="text-danger"></span>
+                                        <label asp-for="@choice.Choice5" class="form-label">D</label>
+                                        <input asp-for="@choice.Choice5" class="form-control">
+                                        <span asp-validation-for="@choice.Choice5" class="text-danger"></span>
+                                    }
+                                </ul>
+                            </td>
+                            <td>
+                                <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Delete" asp-route-id="@question.Id"><i class="fa fa-trash"></i></a>
+                                <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Edit" asp-route-id="@question.Id"><i class="fa fa-edit"></i></a>
+                            </td>
+                        </tr>
+                    }
                 </div>
                 <div class="mb-3">
                     <button type="submit" class="btn btn-success">Save</button>
-                    <button type="reset" class="btn btn-success">Reset</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
                 </div>
                 <a class="btn btn-primary" asp-action="Index">Back</a>
             </form>

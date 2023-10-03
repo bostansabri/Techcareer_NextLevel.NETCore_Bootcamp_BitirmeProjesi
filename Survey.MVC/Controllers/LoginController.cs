@@ -67,7 +67,7 @@ namespace TechSurvey.MVC.Controllers
         }
         #endregion
 
-        #region Singin
+        #region Signin
         [HttpGet]
         public async Task<IActionResult> Signin()
         {
@@ -94,10 +94,10 @@ namespace TechSurvey.MVC.Controllers
                 }
                 await userManager.AddToRoleAsync(user, userRole.Name);
 
-                return RedirectToAction("Index", "Login", new { Area = "Member" });
+                return RedirectToAction("Index", "Login", new { Area = "Default" });
 
             }
-            ModelState.AddModelError("", "Kayıt Başarısız");
+            ModelState.AddModelError("", "Registration Failed");
             return View(signinDTO);
         }
         #endregion
