@@ -40,7 +40,7 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="~/assets_adminpanel/js/config.js"></script>
 
-    <title>Manage Categories</title>
+    <title>Manage Survey</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -102,7 +102,8 @@
                                 <h5 class="card-title text-uppercase mb-0">Manage Questions</h5>
                             </div>
                             <div class="card-body">
-                                <a asp-area="Admin" asp-action="Create" asp-controller="Question" button type="button" class="btn btn-secondary btn-lg">Add Questions</a>
+                                <a asp-area="Admin" asp-action="Create" asp-controller="Question" button type="button" class="btn btn-success">Add Questions</a>
+                                <a asp-area="Admin" asp-action="Index" asp-controller="Home" button type=" button" class="btn btn-danger">Back</a>
                             </div>
                             <div class="table-responsive">
                                 <table class="table no-wrap user-table mb-0">
@@ -136,8 +137,8 @@
                                                     </ul>
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="AdminArea" asp-controller="Category" asp-action="Delete" asp-route-id="@question.Id"><i class="fa fa-trash"></i></a>
-                                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="AdminArea" asp-controller="Category" asp-action="Edit" asp-route-id="@question.Id"><i class="fa fa-edit"></i></a>
+                                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Delete" asp-route-id="@question.Id"><i class="fa fa-trash"></i></a>
+                                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Edit" asp-route-id="@question.Id"><i class="fa fa-edit"></i></a>
                                                 </td>
                                             </tr>
                                         }

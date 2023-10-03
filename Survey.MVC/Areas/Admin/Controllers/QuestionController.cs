@@ -122,7 +122,7 @@ namespace TechSurvey.MVC.Areas.Admin.Controllers
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CategoryExists(question.Id))
+                    if (!QuestionExists(question.Id))
                     {
                         return NotFound();
                     }
@@ -136,7 +136,7 @@ namespace TechSurvey.MVC.Areas.Admin.Controllers
             return View(question);
         }
 
-        private bool CategoryExists(int id)
+        private bool QuestionExists(int id)
         {
             return (dbContext.Questions?.Any(p => p.Id == id)).GetValueOrDefault();
         }

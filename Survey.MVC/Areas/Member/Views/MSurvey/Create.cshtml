@@ -1,0 +1,61 @@
+﻿@using TechSurvey.MVC.Areas.Member.Models.DTOs;
+@model MSurveyCreateDTO
+
+<style>
+    body {
+        background-color: #6A6A6A
+    }
+</style>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Please Enter Survey Name</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" asp-controller="MSurvey" asp-area="Member" method="post">
+            <div class="mb-3">
+                <input asp-for="@Model.SurveyName" class="form-control" placeholder="Enter Survey Name">
+                <span asp-validation-for="@Model.SurveyName" class="text-danger"></span>
+            </div>
+        </form>
+    </div>
+</div>
+<br />
+<div class="card">
+    <div class="card-header">
+        <h4>Please Select Questions For Your Survey</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" asp-controller="MSurvey" asp-area="Member" method="post">
+            @foreach (var question in Model.Questions)
+            {
+                <div class="card">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                        <label class="form-check-label" for="flexCheckDefault">
+                            @question.Number - @question.Content
+                        </label>
+                    </div>
+                    <div class="card-body">
+                        <ul class="list-group">
+                            @foreach (var choice in question.Choices)
+                            {
+                                <li class="list-group-item">A) @choice.Choice1</li>
+                                <li class="list-group-item">B) @choice.Choice2</li>
+                                <li class="list-group-item">C) @choice.Choice3</li>
+                                <li class="list-group-item">D) @choice.Choice4</li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <br />
+            }
+            <br />
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Save</button>
+                <button type="reset" class="btn btn-danger">Reset</button>
+            </div>
+            <a class="btn btn-primary" asp-controller="Home" asp-action="Index" asp-area="Member">Back</a>
+        </form>
+    </div>
+</div>

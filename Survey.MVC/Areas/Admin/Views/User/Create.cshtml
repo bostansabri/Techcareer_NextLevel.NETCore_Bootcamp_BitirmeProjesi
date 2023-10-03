@@ -1,0 +1,215 @@
+﻿@using TechSurvey.MVC.Areas.Admin.Models.DTOs;
+@model UserCreateDTO
+
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="~/assets_adminpanel/img/favicon/favicon.ico" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+          rel="stylesheet" />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/fonts/boxicons.css" />
+
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="~/assets_adminpanel/css/demo.css" />
+
+    <!-- Vendors CSS -->
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+
+    <link rel="stylesheet" href="~/assets_adminpanel/vendor/libs/apex-charts/apex-charts.css" />
+
+    <!-- Page CSS -->
+    <!-- Helpers -->
+    <script src="~/assets_adminpanel/vendor/js/helpers.js"></script>
+
+    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
+    <script src="~/assets_adminpanel/js/config.js"></script>
+
+    <title>Create</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        body {
+            background: #edf1f5;
+            margin-top: 20px;
+        }
+
+        .card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            background-clip: border-box;
+            border: 0 solid transparent;
+            border-radius: 0;
+        }
+
+        .btn-circle.btn-lg, .btn-group-lg > .btn-circle.btn {
+            width: 50px;
+            height: 50px;
+            padding: 14px 15px;
+            font-size: 18px;
+            line-height: 23px;
+        }
+
+        .text-muted {
+            color: #8898aa !important;
+        }
+
+        [type=button]:not(:disabled), [type=reset]:not(:disabled), [type=submit]:not(:disabled), button:not(:disabled) {
+            cursor: pointer;
+        }
+
+        .btn-circle {
+            border-radius: 100%;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+        }
+
+        .user-table tbody tr .category-select {
+            max-width: 150px;
+            border-radius: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <div class="card-header">
+        <h3>Add User</h3>
+    </div>
+    <div class="card-body">
+        <div asp-validation-summary="ModelOnly" class="d-flex justify-content-center text-danger"></div>
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label asp-for="@Model.RoleId" class="form-label">Role</label>
+                <select asp-for="@Model.RoleId" class="form-control" asp-items="@ViewBag.Roles">
+                    <option value="">Select</option>
+                </select>
+                <span asp-validation-for="@Model.RoleId" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Name" class="form-label">Name</label>
+                <input asp-for="@Model.Name" class="form-control">
+                <span asp-validation-for="@Model.Name" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Surname" class="form-label">Surname</label>
+                <input asp-for="@Model.Surname" class="form-control">
+                <span asp-validation-for="@Model.Surname" class="text-danger"></span>
+            </div>
+                <div class="mb-3">
+                    <label asp-for="@Model.UserName" class="form-label">Username</label>
+                    <input asp-for="@Model.UserName" class="form-control">
+                    <span asp-validation-for="@Model.UserName" class="text-danger"></span>
+                </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Email" class="form-label">Email</label>
+                <input asp-for="@Model.Email" class="form-control">
+                <span asp-validation-for="@Model.Email" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.EmailConfirmed" class="form-label">Email Confirmed</label>
+                <select asp-for="@Model.EmailConfirmed" class="form-control">
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                </select>
+                <span asp-validation-for="@Model.EmailConfirmed" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.Password" class="form-label">Password</label>
+                <input asp-for="@Model.Password" class="form-control">
+                <span asp-validation-for="@Model.Password" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.RePassword" class="form-label">RePassword</label>
+                <input asp-for="@Model.RePassword" class="form-control">
+                <span asp-validation-for="@Model.RePassword" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.PhoneNumber" class="form-label">Phone Number</label>
+                <input asp-for="@Model.PhoneNumber" class="form-control">
+                <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.PhoneNumberConfirmed" class="form-label">Phone Number Confirmed</label>
+                <select asp-for="@Model.PhoneNumberConfirmed" class="form-control">
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                </select>
+                <span asp-validation-for="@Model.PhoneNumberConfirmed" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.TwoFactorEnabled" class="form-label">Two Factor Enabled</label>
+                <select asp-for="@Model.TwoFactorEnabled" class="form-control">
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                </select>
+                <span asp-validation-for="@Model.TwoFactorEnabled" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.LockoutEnabled" class="form-label">Lockout Enabled</label>
+                <select asp-for="@Model.LockoutEnabled" class="form-control">
+                    <option value="false">No</option>
+                    <option value="true">Yes</option>
+                </select>
+                <span asp-validation-for="@Model.LockoutEnabled" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <label asp-for="@Model.AccessFailedCount" class="form-label">Access Failed Count</label>
+                <input asp-for="@Model.AccessFailedCount" class="form-control">
+                <span asp-validation-for="@Model.AccessFailedCount" class="text-danger"></span>
+            </div>
+            <div class="mb-3">
+                <button type="submit" class="btn btn-success">Save</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
+            </div>
+            <a class="btn btn-primary" asp-action="Index">Back</a>
+        </form>
+    </div>
+</div>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript">
+
+    </script>
+
+    <!-- Core JS -->
+    <!-- build:js assets_adminpanel/vendor/js/core.js -->
+    <script src="~/assets_adminpanel/vendor/libs/jquery/jquery.js"></script>
+    <script src="~/assets_adminpanel/vendor/libs/popper/popper.js"></script>
+    <script src="~/assets_adminpanel/vendor/js/bootstrap.js"></script>
+    <script src="~/assets_adminpanel/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+
+    <script src="~/assets_adminpanel/vendor/js/menu.js"></script>
+    <!-- endbuild -->
+    <!-- Vendors JS -->
+    <script src="~/assets_adminpanel/vendor/libs/apex-charts/apexcharts.js"></script>
+
+    <!-- Main JS -->
+    <script src="~/assets_adminpanel/js/main.js"></script>
+
+    <!-- Page JS -->
+    <script src="~/assets_adminpanel/js/dashboards-analytics.js"></script>
+
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+</body>
+</html>

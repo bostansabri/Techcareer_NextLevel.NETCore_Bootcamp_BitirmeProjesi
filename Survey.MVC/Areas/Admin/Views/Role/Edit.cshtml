@@ -1,9 +1,10 @@
-﻿@using TechSurvey.MVC.Areas.Admin.Models.DTOs;
-@model QuestionCreateDTO;
+﻿@using Microsoft.AspNetCore.Identity;
+@model IdentityRole
 
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,7 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="~/assets_adminpanel/js/config.js"></script>
 
-    <title>Create</title>
+    <title>Edit</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -90,78 +91,40 @@
     </style>
 </head>
 <body>
+
     <div class="card">
         <div class="card-header">
-            <h3>Add Questions</h3>
+            <h3>Edit Role</h3>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         </div>
         <div class="card-body">
-            <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <form asp-action="Edit" method="post">
                 <div class="mb-3">
-                    <label asp-for="@Model.Number" class="form-label">Enter Question Number</label>
-                    <input asp-for="@Model.Number" class="form-control">
-                    <span asp-validation-for="@Model.Number" class="text-danger"></span>
+                    <label asp-for="@Model.Name" class="form-label">New Role Name</label>
+                    <input asp-for="@Model.Name" class="form-control">
+                    <span asp-validation-for="@Model.Name" class="text-danger"></span>
                 </div>
                 <div class="mb-3">
-                    <label asp-for="@Model.Content" class="form-label">Enter Question Content</label>
-                    <input asp-for="@Model.Content" class="form-control">
-                    <span asp-validation-for="@Model.Content" class="text-danger"></span>
+                    <input type="hidden" asp-for="@Model.ConcurrencyStamp" class="form-control">
+                    <span asp-validation-for="@Model.ConcurrencyStamp" class="text-danger"></span>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="@Model.Choices" class="form-label">Enter Question Choices</label>
-                    <input asp-for="@Model.Choices" class="form-control">
-                    <span asp-validation-for="@Model.Choices" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                        @foreach (var question in Model.Questions)
-                        {
-                            <tr>
-                                <td>
-                                    @question.Number
-                                </td>
-                                <td>
-                                    @question.Content
-                                </td>
-                                <td class="card-body">
-                                    <ul class="list-group">
-                                        @foreach (var choice in question.Choices)
-                                        {
-                                            <label asp-for="@choice.Choice1" class="form-label">A</label>
-                                            <input asp-for="@choice.Choice1" class="form-control">
-                                            <span asp-validation-for="@choice.Choice1" class="text-danger"></span>
-                                            <label asp-for="@choice.Choice2" class="form-label">B</label>
-                                            <input asp-for="@choice.Choice2" class="form-control">
-                                            <span asp-validation-for="@choice.Choice2" class="text-danger"></span>
-                                            <label asp-for="@choice.Choice3" class="form-label">C</label>
-                                            <input asp-for="@choice.Choice3" class="form-control">
-                                            <span asp-validation-for="@choice.Choice3" class="text-danger"></span>
-                                            <label asp-for="@choice.Choice4" class="form-label">D</label>
-                                            <input asp-for="@choice.Choice4" class="form-control">
-                                            <span asp-validation-for="@choice.Choice4" class="text-danger"></span>
-                                        }
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Delete" asp-route-id="@question.Id"><i class="fa fa-trash"></i></a>
-                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Edit" asp-route-id="@question.Id"><i class="fa fa-edit"></i></a>
-                                </td>
-                            </tr>
-                        }
-                </div>
+                <input type="hidden" asp-for="@Model.Id" />
                 <div class="mb-3">
                     <button type="submit" class="btn btn-success">Save</button>
-                    <button type="reset" class="btn btn-success">Reset</button>
+                    <button type="reset" class="btn btn-danger">Reset</button>
                 </div>
                 <a class="btn btn-primary" asp-action="Index">Back</a>
             </form>
         </div>
     </div>
+
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript">
 
     </script>
+
 
     <!-- Core JS -->
     <!-- build:js assets_adminpanel/vendor/js/core.js -->
@@ -183,5 +146,6 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
 </body>
 </html>

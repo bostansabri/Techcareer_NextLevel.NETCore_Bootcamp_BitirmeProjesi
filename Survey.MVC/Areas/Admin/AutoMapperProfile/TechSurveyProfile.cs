@@ -9,6 +9,7 @@ namespace TechSurvey.MVC.Areas.Admin.AutoMapperProfile
         public TechSurveyProfile()
         {
             CreateMap<QuestionCreateDTO, Question>().ReverseMap();
+            CreateMap<UserCreateDTO, AppUser>();
         }
     }
 }

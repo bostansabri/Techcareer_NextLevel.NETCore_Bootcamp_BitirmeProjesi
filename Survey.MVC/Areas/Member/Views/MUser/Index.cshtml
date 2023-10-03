@@ -1,9 +1,10 @@
-﻿@using TechSurvey.MVC.Areas.Admin.Models.DTOs;
-@model QuestionCreateDTO;
+﻿@using TechSurvey.Entity.Concrete;
+@model IEnumerable<AppUser>
 
 @{
     Layout = null;
 }
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,7 +40,7 @@
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
     <script src="~/assets_adminpanel/js/config.js"></script>
 
-    <title>Create</title>
+    <title>Manage Account</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
@@ -90,70 +91,50 @@
     </style>
 </head>
 <body>
-    <div class="card">
-        <div class="card-header">
-            <h3>Add Questions</h3>
-            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        </div>
-        <div class="card-body">
-            <form asp-action="Create" enctype="multipart/form-data" method="post">
-                <div class="mb-3">
-                    <label asp-for="@Model.Number" class="form-label">Enter Question Number</label>
-                    <input asp-for="@Model.Number" class="form-control">
-                    <span asp-validation-for="@Model.Number" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="@Model.Content" class="form-label">Enter Question Content</label>
-                    <input asp-for="@Model.Content" class="form-control">
-                    <span asp-validation-for="@Model.Content" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                    <label asp-for="@Model.Choices" class="form-label">Enter Question Choices</label>
-                    <input asp-for="@Model.Choices" class="form-control">
-                    <span asp-validation-for="@Model.Choices" class="text-danger"></span>
-                </div>
-                <div class="mb-3">
-                        @foreach (var question in Model.Questions)
-                        {
-                            <tr>
-                                <td>
-                                    @question.Number
-                                </td>
-                                <td>
-                                    @question.Content
-                                </td>
-                                <td class="card-body">
-                                    <ul class="list-group">
-                                        @foreach (var choice in question.Choices)
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+            <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-uppercase mb-0">Manage Account</h5>
+                            </div>
+                            <div class="card-body">
+                                <a asp-area="Member" asp-action="Index" asp-controller="Home" button type=" button" class="btn btn-danger">Back</a>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table no-wrap user-table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col" class="border-0 text-uppercase font-medium">Name</th>
+                                            <th scope="col" class="border-0 text-uppercase font-medium">Surname</th>
+                                            <th scope="col" class="border-0 text-uppercase font-medium">Email</th>
+                                            <th scope="col" class="border-0 text-uppercase font-medium">Manage</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
                                         {
-                                            <label asp-for="@choice.Choice1" class="form-label">A</label>
-                                            <input asp-for="@choice.Choice1" class="form-control">
-                                            <span asp-validation-for="@choice.Choice1" class="text-danger"></span>
-                                            <label asp-for="@choice.Choice2" class="form-label">B</label>
-                                            <input asp-for="@choice.Choice2" class="form-control">
-                                            <span asp-validation-for="@choice.Choice2" class="text-danger"></span>
-                                            <label asp-for="@choice.Choice3" class="form-label">C</label>
-                                            <input asp-for="@choice.Choice3" class="form-control">
-                                            <span asp-validation-for="@choice.Choice3" class="text-danger"></span>
-                                            <label asp-for="@choice.Choice4" class="form-label">D</label>
-                                            <input asp-for="@choice.Choice4" class="form-control">
-                                            <span asp-validation-for="@choice.Choice4" class="text-danger"></span>
+                                            <tr>
+                                                <td>@item.Name</td>
+                                                <td>@item.Surname</td>
+                                                <td>@item.Email</td>
+                                                <td>
+                                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Member" asp-controller="MUser" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>
+                                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Member" asp-controller="MUser" asp-action="Edit" asp-route-id="@item.Id"><i class="fa fa-edit"></i></a>
+                                                </td>
+                                            </tr>
                                         }
-                                    </ul>
-                                </td>
-                                <td>
-                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Delete" asp-route-id="@question.Id"><i class="fa fa-trash"></i></a>
-                                    <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Edit" asp-route-id="@question.Id"><i class="fa fa-edit"></i></a>
-                                </td>
-                            </tr>
-                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="mb-3">
-                    <button type="submit" class="btn btn-success">Save</button>
-                    <button type="reset" class="btn btn-success">Reset</button>
-                </div>
-                <a class="btn btn-primary" asp-action="Index">Back</a>
-            </form>
+            </div>
         </div>
     </div>
     <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
@@ -162,6 +143,7 @@
     <script type="text/javascript">
 
     </script>
+
 
     <!-- Core JS -->
     <!-- build:js assets_adminpanel/vendor/js/core.js -->
@@ -183,5 +165,6 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
 </body>
 </html>
