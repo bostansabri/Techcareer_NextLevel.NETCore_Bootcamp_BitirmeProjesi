@@ -31,7 +31,7 @@ namespace TechSurvey.MVC.Areas.Admin.Controllers
             {
                 var roleNames = await userManager.GetRolesAsync(user);
                 var roles = roleNames.Select(roleName => new IdentityRole { Name = roleName }).ToList();
-                user.Roles = roles;
+                //user.Roles = roles;
             }
 
             return View(users);

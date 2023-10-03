@@ -6,6 +6,5 @@ namespace TechSurvey.Entity.Concrete
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public IList<IdentityRole>? Roles { get; set; }
     }
 }

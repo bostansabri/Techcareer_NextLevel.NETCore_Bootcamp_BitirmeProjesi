@@ -96,7 +96,7 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         </div>
         <div class="card-body">
-            <form asp-action="Create" enctype="multipart/form-data" method="post">
+            <form asp-action="Create" method="post">
                 <div class="mb-3">
                     <label asp-for="@Model.Number" class="form-label">Enter Question Number</label>
                     <input asp-for="@Model.Number" class="form-control">
