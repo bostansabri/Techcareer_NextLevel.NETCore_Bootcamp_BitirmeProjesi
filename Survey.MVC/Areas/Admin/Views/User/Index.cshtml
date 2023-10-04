@@ -126,12 +126,12 @@
                                                 <td>@item.Email</td>
                                                 <td>
                                                     @{
-                                                        string roller = "";
-                                                        foreach (var rol in item.Roles)
+                                                        string roles = "";
+                                                        foreach (var role in item.Roles)
                                                         {
-                                                            roller += rol.Name + " ";
+                                                            roles += role.Name + " ";
                                                         }
-                                                    } @roller
+                                                    } @roles
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="User" asp-action="Delete" asp-route-id="@item.Id"><i class="fa fa-trash"></i></a>

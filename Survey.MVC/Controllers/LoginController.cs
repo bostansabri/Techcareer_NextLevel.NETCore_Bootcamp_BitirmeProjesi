@@ -78,6 +78,11 @@ namespace TechSurvey.MVC.Controllers
         [HttpPost]
         public async Task<IActionResult> Signin(SigninDTO signinDTO)
         {
+            if (!ModelState.IsValid)
+            {
+                ModelState.AddModelError("", "Registration Failed");
+                return View(signinDTO);
+            }
             AppUser user = mapper.Map<AppUser>(signinDTO);
             user.UserName = signinDTO.Email;
 

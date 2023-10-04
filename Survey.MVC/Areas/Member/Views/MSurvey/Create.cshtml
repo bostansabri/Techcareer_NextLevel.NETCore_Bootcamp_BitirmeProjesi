@@ -37,16 +37,23 @@
                         </label>
                     </div>
                     <div class="card-body">
-                        <ul class="list-group">
-                            @foreach (var choice in question.Choices)
-                            {
-                                <li class="list-group-item">A) @choice.Choice1</li>
-                                <li class="list-group-item">B) @choice.Choice2</li>
-                                <li class="list-group-item">C) @choice.Choice3</li>
-                                <li class="list-group-item">D) @choice.Choice4</li>
-                            }
-                        </ul>
+                        <form>
+                            <ul class="list-group">
+                                @{
+                                    string choices = "";
+                                    var choicesArray = question.Choices.ToArray();
+                                    for (int i = 0; i < choicesArray.Length; i++)
+                                    {
+                                        <label>
+                                            <input type="radio" name="choice" value="@choicesArray[i].Id">
+                                            @((char)('A' + i)). @choicesArray[i].Text
+                                        </label>
+                                    }
+                                }
+                            </ul>
+                        </form>
                     </div>
+
                 </div>
                 <br />
             }

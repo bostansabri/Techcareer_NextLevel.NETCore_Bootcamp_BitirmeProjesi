@@ -25,7 +25,7 @@ namespace TechSurvey.MVC.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var users = await userManager.Users.Include(p => p.Roles).ToListAsync();
+            var users = await userManager.Users.Include(u => u.Roles).ToListAsync();
             return View(users);
         }
 

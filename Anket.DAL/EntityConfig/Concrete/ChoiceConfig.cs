@@ -14,6 +14,7 @@ namespace TechSurvey.DAL.EntityConfig.Concrete
             builder.Property(p => p.Choice3).HasMaxLength(50);
             builder.Property(p => p.Choice4).HasMaxLength(50);
             builder.Property(p => p.Choice5).HasMaxLength(50);
+            builder.Property(p => p.Text).HasMaxLength(300);
         }
     }
 }

@@ -126,13 +126,18 @@
                                                     @question.Content
                                                 </td>
                                                 <td>
-                                                    @{
-                                                        string choices = "";
-                                                        foreach (var choice in question.Choices)
-                                                        {
-                                                            choices += choice.Text + "-";
+                                                    <ul class="list-group">
+                                                        @{
+                                                            string choices = "";
+                                                            var choicesArray = question.Choices.ToArray();
+                                                            for (int i = 0; i < choicesArray.Length; i++)
+                                                            {
+                                                                <ul>    
+                                                                    @((char)('A' + i)). @choicesArray[i].Text
+                                                                </ul>
+                                                            }
                                                         }
-                                                    } @choices
+                                                    </ul>
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-outline-info btn-circle btn-lg btn-circle ml-2" asp-area="Admin" asp-controller="Question" asp-action="Delete" asp-route-id="@question.Id"><i class="fa fa-trash"></i></a>

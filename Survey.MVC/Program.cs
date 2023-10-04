@@ -9,19 +9,18 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-//builder.Configuration.GetConnectionString("TechcareerSurveyDb")
+
 builder.Services.AddDbContext<SqlDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("TechcareerSurveyDb")));
-//.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
 #region Identity Configuration
 builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
     {
         //Password settings.
-        options.Password.RequireDigit = false;
-        options.Password.RequireUppercase = false;
-        options.Password.RequireLowercase = false;
+        options.Password.RequireDigit = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
         options.Password.RequireNonAlphanumeric = false;
-        options.Password.RequiredLength = 3;
+        options.Password.RequiredLength = 8;
         options.Password.RequiredUniqueChars = 1;
         options.User.RequireUniqueEmail = true;
 

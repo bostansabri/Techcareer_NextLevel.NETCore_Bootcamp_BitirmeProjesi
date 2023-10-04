@@ -19,8 +19,8 @@ namespace TechSurvey.MVC.Controllers
 
         public async Task<IActionResult> Index()
         {
-            //AppUser admin = new AppUser { Name = "Sabri", Surname = "Bostan", UserName = "Sabri", Email = "sabri@gmail.com", PhoneNumberConfirmed = true, TwoFactorEnabled = false, EmailConfirmed = true, AccessFailedCount = 0, LockoutEnabled = false };
-            //var result = await userManager.CreateAsync(admin, "123");
+            //AppUser admin = new AppUser { Name = "Deneme", Surname = "DenemeDeneme", UserName = "DENEME", Email = "deneme@gmail.com", PhoneNumberConfirmed = true, TwoFactorEnabled = false, EmailConfirmed = true, AccessFailedCount = 0, LockoutEnabled = false };
+            //var result = await userManager.CreateAsync(admin, "dENEME123.");
 
             return View();
         }
